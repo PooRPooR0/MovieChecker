@@ -1,6 +1,5 @@
 import Main from '@/pages/Main'
 import AllFilms from '@/pages/AllFilms'
-import Statistic from '@/pages/Statistic'
 import WatchedFilms from '@/pages/WatchedFilms'
 import Wishes from '@/pages/Wishes'
 import { createRouter, createWebHistory } from 'vue-router'
@@ -12,7 +11,7 @@ const routes = [
     },
     {
         path: '/all-films',
-        component: AllFilms
+        component: AllFilms,
     },
     {
         path: '/watched',
@@ -21,10 +20,6 @@ const routes = [
     {
         path: '/wishes',
         component: Wishes
-    },
-    {
-        path: '/statistic',
-        component: Statistic
     },
 ]
 

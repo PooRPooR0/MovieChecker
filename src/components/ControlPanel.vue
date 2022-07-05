@@ -1,20 +1,52 @@
 <template>
     <div class="controlPanel">
         <div class="controlPanel__search">
-            <input class="search" type="text" placeholder="Поиск..." />
-            <select class="sortSelect">
-                <option selected>Сортировка</option>
-                <option>По возрастанию</option>
-                <option>По убыванию</option>
+            <input
+                :value="searchQuery"
+                @input="changeQuery"
+                class="search"
+                type="text"
+                placeholder="Поиск..."
+            />
+            <select v-model="selectedSort" @change="changeSort" class="sortSelect">
+                <option disabled value="">Сортировка</option>
+                <option
+                    v-for="option of sortOption"
+                    :key="option.value"
+                    :value="option.value"
+                >
+                    {{ option.name }}
+                </option>
             </select>
         </div>
-        <rounded-button><icon name="plus" /></rounded-button>
+        <rounded-button @click="changeShowFilmForm"><icon name="plus" /></rounded-button>
     </div>
 </template>
 
 <script>
 export default {
-
+    props: {
+        selectedSort: {
+            type: String
+        },
+        searchQuery: {
+            type: String
+        },
+        sortOption: {
+            type: Array
+        }
+    },
+    methods: {
+        changeSort(e) {
+            this.$emit("update:selectedSort", e.target.value)
+        },
+        changeQuery(e) {
+            this.$emit("update:searchQuery", e.target.value)
+        },
+        changeShowFilmForm() {
+            this.$emit("showCreateFilmForm")
+        }
+    }
 }
 </script>
 

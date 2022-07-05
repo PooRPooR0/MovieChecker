@@ -6,6 +6,7 @@ import SideBarItem from "@/components/UI/SideBarItem"
 import BurgerMenuItem from "@/components/UI/BurgerMenuItem"
 import PageHeader from "@/components/UI/PageHeader"
 import RoundedButton from "@/components/UI/RoundedButton"
+import CustomDialog from "@/components/UI/CustomDialog"
 
 export default [
     MainButton,
@@ -15,5 +16,6 @@ export default [
     SideBarItem,
     BurgerMenuItem,
     PageHeader,
-    RoundedButton
+    RoundedButton,
+    CustomDialog
 ]

@@ -1,6 +1,8 @@
 <template>
     <div class="films_list">
-        <film-card v-for="film of films" :film="film" :key="film.id"></film-card>
+        <div v-if="films.length > 0">
+            <film-card v-for="film of films" :film="film" :key="film.id"></film-card>
+        </div>
     </div>
 </template>
 
@@ -14,14 +16,15 @@ export default {
     props: {
         films: {
             type: Array,
-            required: true
+            required: true,
+            default: () => []
         }
     }
 }
 </script>
 
 <style scoped>
-.films_list {
+.films_list > div {
     max-width: 100%;
     display: flex;
     gap: 10px;
@@ -30,7 +33,7 @@ export default {
 }
 
 @media (min-width: 992px) {
-    .films_list {
+    .films_list > div {
         gap: 25px;
         flex-wrap: wrap;
         flex-direction: row;
@@ -38,7 +41,7 @@ export default {
 }
 
 @media (min-width: 1200px) {
-    .films_list {
+    .films_list > div {
         gap: 30px;
     }
 }
