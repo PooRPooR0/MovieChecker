@@ -7,6 +7,9 @@ import BurgerMenuItem from "@/components/UI/BurgerMenuItem"
 import PageHeader from "@/components/UI/PageHeader"
 import RoundedButton from "@/components/UI/RoundedButton"
 import CustomDialog from "@/components/UI/CustomDialog"
+import CustomInput from "@/components/UI/CustomInput"
+import CustomSelector from "@/components/UI/CustomSelector"
+import FileInput from "@/components/UI/FileInput"
 
 export default [
     MainButton,
@@ -17,5 +20,8 @@ export default [
     BurgerMenuItem,
     PageHeader,
     RoundedButton,
-    CustomDialog
+    CustomDialog,
+    CustomInput,
+    CustomSelector,
+    FileInput,
 ]

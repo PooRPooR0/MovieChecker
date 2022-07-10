@@ -19,6 +19,13 @@
                 </option>
             </select>
         </div>
+        <custom-selector
+            class="quart"
+            title="Состояние"
+            :options="typeOptions"
+            v-model="typeChoosen"
+            @change="changeType"
+        />
         <rounded-button @click="changeShowFilmForm"><icon name="plus" /></rounded-button>
     </div>
 </template>
@@ -34,6 +41,12 @@ export default {
         },
         sortOption: {
             type: Array
+        },
+        typeOptions: {
+            type: Array
+        },
+        typeChoosen: {
+            type: String
         }
     },
     methods: {
@@ -45,6 +58,9 @@ export default {
         },
         changeShowFilmForm() {
             this.$emit("showCreateFilmForm")
+        },
+        changeType(e) {
+            this.$emit("update:typeChoosen", e.target.value)
         }
     }
 }
@@ -53,17 +69,21 @@ export default {
 <style>
 .controlPanel {
     display: flex;
-    height: 30px;
-    gap: 20px;
+    min-height: 30px;
+    gap:  10px 20px;
+    flex-wrap: wrap;
+    min-width: 0;
 }
 
 .controlPanel__search {
-    flex: 1 0;
-    display: flex
+    flex: 3 1;
+    display: flex;
+    width: 100%;
 }
 
 .search {
-    flex: 1 0;
+    min-width: 0;
+    flex: 1 1;
     background: #363639;
     border: 1px solid #292929;
     padding: 0 10px;
@@ -99,5 +119,9 @@ export default {
 
 .sortSelect option {
     background: #fff;
+}
+
+.quart {
+    flex: 1 0
 }
 </style>

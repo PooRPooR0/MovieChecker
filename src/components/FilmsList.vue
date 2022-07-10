@@ -1,7 +1,13 @@
 <template>
     <div class="films_list">
         <div v-if="films.length > 0">
-            <film-card v-for="film of films" :film="film" :key="film.id"></film-card>
+            <film-card
+                v-for="film of films"
+                :film="film"
+                :key="film.id"
+                @remove="$emit('remove', film)"
+                @changeState="$emit('changeState', film)"
+            />
         </div>
     </div>
 </template>

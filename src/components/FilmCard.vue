@@ -1,7 +1,7 @@
 <template>
     <div class="d-none d-lg-flex card">
         <div class="card-img-rect">
-            <img class="card-image" src="@/../public/images/duna.png" alt="Movie image">
+            <img rel="preload" class="card-image" :src="film.image" alt="Movie image">
         </div>
             
         <div class="card-body">
@@ -16,7 +16,19 @@
 
         <div class="card-footer">
             <span class="card-state">{{ film.state }}</span>
-            <gamburger-button size="small"></gamburger-button>
+            <gamburger-button @click="menu = !menu" size="small"></gamburger-button>
+            <div v-if="menu" class="menu">
+                <ul>
+                    <li class="delete_opt" @click="$emit('remove', film)" >Удалить</li>
+                    <li
+                        v-if="film.state !== 'Просмотренно'"
+                        class="menu_opt"
+                        @click="$emit('changeState', film)"
+                    >
+                        Просмотрел
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
@@ -24,16 +36,34 @@
         <span class="small-card__title">{{ film.title }}</span>
         <span class="small-card__text">{{ film.type }} {{ film.year }}</span>
         <span class="small-card__state">{{ film.state }}</span>
-        <gamburger-button size="small"></gamburger-button>
+        <gamburger-button @click="menu = !menu" size="small"></gamburger-button>
+        <div v-if="menu" class="small-menu">
+            <ul>
+                <li class="delete_opt" @click="$emit('remove', film)" >Удалить</li>
+                <li 
+                    v-if="film.state !== 'Просмотренно'"
+                    class="menu_opt"
+                    @click="$emit('changeState', film)"
+                >
+                    Просмотрел
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
+    emits: ['remove'],
     props: {
         film: {
             type: Object,
             required: true
+        }
+    },
+    data() {
+        return {
+            menu: false
         }
     }
 }
@@ -89,11 +119,80 @@ export default {
 
 .card-footer {
     background: #1F1F1F;
+    position: relative;
     padding: 3px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     fill: white;
+}
+
+.small-menu {
+    width: calc(40% - 20px);
+    position: absolute;
+    bottom: calc(100% + 5px);
+    right: 10px;
+    background: #1F1F1F;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.small-menu ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+}
+
+.small-menu ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+
+.menu {
+    width: calc(100% - 20px);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 10px;
+    background: #1F1F1F;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.menu ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style: none;
+}
+
+.menu ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    list-style: none;
+    cursor: pointer;
+    height: 30px;
+}
+
+.menu_opt {
+    color: white;
+}
+
+.menu_opt:hover {
+    background: #363639;
+}
+
+.delete_opt {
+    color: rgb(204, 44, 44);
+}
+
+.delete_opt:hover {
+    background: rgb(204, 44, 44);
+    color: white;
 }
 
 .card-state {
@@ -106,6 +205,7 @@ export default {
 .small-card {
     width: 100%;
     justify-content: space-between;
+    position: relative;
     align-items: center;
     background-color: #363639;
     border-radius: 4px;

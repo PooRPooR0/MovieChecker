@@ -8,8 +8,8 @@
                 <p>Войди в свой аккаунт, если он у тебя есть, а если у тебя все еще нет своего аккаунта, то пожалуйста зарегестрируйся!</p>
             </div>
             <div class="main_page__buttons">
-                <main-button>Создать аккаунт</main-button>
-                <brackets-button>Войти</brackets-button>
+                <main-button @click="$router.push('/signup')">Создать аккаунт</main-button>
+                <brackets-button @click="$router.push('/login')">Войти</brackets-button>
             </div>
         </div>
   </div>

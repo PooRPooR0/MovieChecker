@@ -1,8 +1,6 @@
 <template>
     <nav class="sidebar__nav">
         <side-bar-item to="/all-films"><icon name="video" />Все фильмы</side-bar-item>
-        <side-bar-item to="/watched"><icon name="like" />Просмотренное</side-bar-item>
-        <side-bar-item to="/wishes"><icon name="bookmarks" />Планируемое</side-bar-item>
     </nav>
 </template>
 
